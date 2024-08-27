@@ -1,11 +1,11 @@
 {
-	"name": "@rijk/ti-editor",
+	"name": "@rijk/ti-preview",
 	"version": "0.0.1",
-	"description": "Mini HTML/CSS editor for the Typography & Interaction class at Parsons",
+	"description": "Mini HTML/CSS editor / preview for the Typography & Interaction class at Parsons",
 	"author": "Rijk van Zanten <rijkvanzanten@me.com>",
 	"license": "MIT",
-	"main": "ti-editor.js",
-	"module": "ti-editor.js",
+	"main": "ti-preview.js",
+	"module": "ti-preview.js",
 	"type": "module",
 	"scripts": {
 		"build": "tsc && rollup -c",

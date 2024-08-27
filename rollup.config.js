@@ -4,9 +4,9 @@ import terser from "@rollup/plugin-terser";
 import summary from "rollup-plugin-summary";
 
 export default {
-	input: "dist/ti-editor.js",
+	input: "dist/ti-preview.js",
 	output: {
-		file: "dist/ti-editor.bundled.js",
+		file: "dist/ti-preview.bundled.js",
 		format: "esm",
 	},
 	onwarn(warning) {
