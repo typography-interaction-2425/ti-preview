@@ -1,0 +1,31 @@
+{
+	"name": "@rijk/ti-editor",
+	"version": "0.0.1",
+	"description": "Mini HTML/CSS editor for the Typography & Interaction class at Parsons",
+	"author": "Rijk van Zanten <rijkvanzanten@me.com>",
+	"license": "MIT",
+	"main": "ti-editor.js",
+	"module": "ti-editor.js",
+	"type": "module",
+	"scripts": {
+		"build": "tsc && rollup -c",
+		"build:watch": "tsc --watch",
+		"start": "web-dev-server --open demo/ --node-resolve",
+		"start:watch": "web-dev-server --open demo/ --node-resolve --watch"
+	},
+	"devDependencies": {
+		"@rollup/plugin-node-resolve": "15.2.3",
+		"@rollup/plugin-replace": "5.0.7",
+		"@rollup/plugin-terser": "0.4.4",
+		"@web/dev-server": "0.4.6",
+		"@web/dev-server-legacy": "2.1.1",
+		"@webcomponents/webcomponentsjs": "2.8.0",
+		"add": "2.0.6",
+		"lit": "3.2.0",
+		"p": "0.2.0",
+		"rollup": "4.21.1",
+		"rollup-plugin-summary": "2.0.1",
+		"ts-lit-plugin": "2.0.2",
+		"typescript": "5.5.4"
+	}
+}
