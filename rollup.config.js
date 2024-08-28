@@ -7,11 +7,17 @@ import summary from "rollup-plugin-summary";
 export default defineConfig({
 	input: "dist/index.js",
 	output: {
-		file: "dist/index.bundled.js",
 		format: "esm",
-		dir: "dist",
+		dir: "dist/bundled",
 		manualChunks: {
 			lit: ["lit"],
+			codemirror: [
+				"codemirror",
+				"@codemirror/lang-html",
+				"@codemirror/view",
+				"@codemirror/state",
+				"@codemirror/lang-css",
+			],
 		},
 	},
 	onwarn(warning) {

@@ -1,5 +1,7 @@
+import dedent from "dedent";
 import { LitElement, css, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
+import { unsafeCSS } from "lit";
 
 @customElement("ti-preview")
 export class TiPreview extends LitElement {
@@ -11,6 +13,11 @@ export class TiPreview extends LitElement {
 			max-width: 800px;
 		}
 	`;
+
+	constructor() {
+		super();
+		this.updateFiles();
+	}
 
 	@state()
 	current: string | null = null;
@@ -31,7 +38,7 @@ export class TiPreview extends LitElement {
 			const figcaption = el.querySelector("figcaption")!;
 			const pre = el.querySelector("pre")!;
 
-			return [figcaption.innerText, pre.innerText];
+			return [figcaption.innerText, dedent(pre.innerText)];
 		});
 	}
 
@@ -45,9 +52,13 @@ export class TiPreview extends LitElement {
 		this.current = event.detail.file as string;
 	}
 
-	override connectedCallback() {
-		super.connectedCallback();
-		this.updateFiles();
+	private onCodeChange(event: CustomEvent) {
+		const { file, code } = event.detail as { file: string; code: string };
+
+      if (this.files.get(file) !== code) {
+         this.files.set(file, code);
+         this.requestUpdate();
+      }
 	}
 
 	override render() {
@@ -57,8 +68,21 @@ export class TiPreview extends LitElement {
 				files="${this.fileNames.join(",")}"
 				@set-current="${this.setCurrent}"
 			></ti-files>
-         <ti-editor></ti-editor>
-			<slot></slot>
+
+			<div id="split">
+				<ti-editor
+					file="${this.current}"
+					code="${this.current ? this.files.get(this.current) : ""}"
+					@code-change="${this.onCodeChange}"
+				></ti-editor>
+				<ti-output>
+					<style>
+						${unsafeCSS(this.files.get("styles.css"))}
+					</style>
+
+					${document.createRange().createContextualFragment(this.files.get("index.html")!)}
+				</ti-output>
+			</div>
 		`;
 	}
 }

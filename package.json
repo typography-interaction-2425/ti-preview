@@ -29,6 +29,12 @@
 		"typescript": "5.5.4"
 	},
 	"dependencies": {
+		"@codemirror/lang-css": "6.2.1",
+		"@codemirror/lang-html": "6.4.9",
+		"@codemirror/state": "6.4.1",
+		"@codemirror/view": "6.33.0",
+		"codemirror": "6.0.1",
+		"dedent": "1.5.3",
 		"lit": "3.2.0"
 	}
 }
