@@ -39,5 +39,6 @@
 		"codemirror": "6.0.1",
 		"dedent": "1.5.3",
 		"lit": "3.2.0"
-	}
+	},
+	"packageManager": "pnpm@9.9.0"
 }
