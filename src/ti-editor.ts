@@ -5,9 +5,25 @@ import { EditorView } from "@codemirror/view";
 import { minimalSetup } from "codemirror";
 import { LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
+import { css } from 'lit';
 
 @customElement("ti-editor")
 export class TiEditor extends LitElement {
+   static override styles = css`
+      :host {
+         padding: 8px;
+         display: block;
+         
+         & .cm-editor {
+            height: 100%;
+         }
+
+         & .cm-focused {
+            outline: none;
+         }
+      }
+   `;
+
 	view?: EditorView;
 
 	@property()

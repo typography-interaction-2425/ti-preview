@@ -8,18 +8,52 @@
 	</head>
 
 	<body>
-		<ti-preview>
+		<ti-preview current="style.css">
 			<figure>
             <figcaption>index.html</figcaption>
 				<pre>
-               &lt;h1&gt;Hello World&lt;/h1&gt;
+               &lt;!doctype html&gt;
+               &lt;html&gt;
+                  &lt;head&gt;
+                     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+                     &lt;link href=&quot;/assets/reset.css&quot; rel=&quot;stylesheet&quot;&gt;
+                     &lt;link href=&quot;setup.css&quot; rel=&quot;stylesheet&quot;&gt;
+                     &lt;link href=&quot;style.css&quot; rel=&quot;stylesheet&quot;&gt;
+                  &lt;/head&gt;
+                  &lt;body&gt;
+                     &lt;section&gt;
+                        &lt;p&gt;This element is responsive.&lt;/p&gt;
+                        &lt;p&gt;I’ll add some text more here so we have something to look at and so that it wraps, but the text itself isn’t important, at the moment.&lt;/p&gt;
+                     &lt;/section&gt;
+                  &lt;/body&gt;
+               &lt;/html&gt;
             </pre>
 			</figure>
 
          <figure>
-            <figcaption>styles.css</figcaption>
+            <figcaption>setup.css</figcaption>
 				<pre>
-               h1 { background-color: papayawhip; }
+               body {
+                  font-family: sans-serif;
+                  padding: 20px;
+               }
+               
+               section { padding: 10px; }
+               
+               section:not(:first-child) { margin-top: 10px; }
+               
+               p:not(:first-child) { margin-top: 10px; }
+            </pre>
+			</figure>
+         
+         <figure>
+            <figcaption>style.css</figcaption>
+				<pre>
+               section { background-color: aquamarine; }
+
+               @media (max-width: 480px), (min-width: 600px) {
+                  section { background-color: gold; }
+               }
             </pre>
 			</figure>
 		</ti-preview>

@@ -2,12 +2,39 @@ import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
-@customElement("ti-files")
-export class TiFiles extends LitElement {
+@customElement("ti-tabs")
+export class TiTabs extends LitElement {
    static override styles = css`
       :host {
-         & a.active {
-            color: purple;
+         background-color: #e8eaed;
+         display: block;
+      }
+
+      nav {
+         display: flex;
+      }
+
+      a {
+         padding: 8px 12px;
+         font-family: system-ui, sans-serif;
+         text-decoration: none;
+         font-size: 12px;
+         color: black;
+         margin: 0;
+         position: relative;
+
+         &:hover, &.active {
+            background-color: #f6f8fa;
+         }
+
+         &.active::after {
+            content: "";
+            position: absolute;
+            inset-block: 0;
+            inset-inline: 0;
+            inline-size: 100%;
+            block-size: 2px;
+            background-color: #ea8872;
          }
       }
    `;

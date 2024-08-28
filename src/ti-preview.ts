@@ -1,16 +1,35 @@
 import dedent from "dedent";
 import { LitElement, css, html, unsafeCSS } from "lit";
-import { customElement, state } from "lit/decorators.js";
+import { customElement, property, state } from "lit/decorators.js";
 
 @customElement("ti-preview")
 export class TiPreview extends LitElement {
 	static override styles = css`
 		:host {
-			display: block;
-			border: solid 1px gray;
-			padding: 16px;
-			max-width: 800px;
-		}
+			display: flex;
+         border-radius: 4px;
+         overflow: hidden;
+         min-height: 400px;
+         width: 100%;
+      }
+
+      .code {
+         background-color: #f6f8fa;
+         width: 60%;
+         overflow: hidden;
+         resize: horizontal;
+         display: flex;
+         flex-direction: column;
+      }
+
+      ti-editor {
+         flex-grow: 1;
+      }
+
+      ti-output {
+         flex-grow: 1;
+         flex-basis: 0;
+      }
 	`;
 
 	constructor() {
@@ -18,7 +37,7 @@ export class TiPreview extends LitElement {
 		this.updateFiles();
 	}
 
-	@state()
+	@property()
 	current: string | null = null;
 
 	@state()
@@ -60,32 +79,41 @@ export class TiPreview extends LitElement {
 		}
 	}
 
+   private get outputCode() {
+      return `
+         ${Array.from(this.files.entries())
+            .filter(([filename]) => filename.endsWith(".html"))
+            .map(([, code]) => code)
+            .join("")
+         }
+
+         <style>
+            ${Array.from(this.files.entries())
+               .filter(([filename]) => filename.endsWith(".css"))
+               .map(([, code]) => unsafeCSS(code))
+               .join("")
+            }
+         </style>
+      `;
+   }
+
 	override render() {
 		return html`
-			<ti-files
-				current="${this.current}"
-				files="${this.fileNames.join(",")}"
-				@set-current="${this.setCurrent}"
-			></ti-files>
+         <div class="code">
+            <ti-tabs
+               current="${this.current}"
+               files="${this.fileNames.join(",")}"
+               @set-current="${this.setCurrent}"
+            ></ti-tabs>
 
-			<div id="split">
-				<ti-editor
-					file="${this.current}"
-					code="${this.current ? this.files.get(this.current) : ""}"
-					@code-change="${this.onCodeChange}"
-				></ti-editor>
-				<ti-output>
-					<style>
-						${Array.from(this.files.entries())
-							.filter(([filename]) => filename.endsWith(".css"))
-							.map(([, code]) => unsafeCSS(code))}
-					</style>
+            <ti-editor
+               file="${this.current}"
+               code="${this.current ? this.files.get(this.current) : ""}"
+               @code-change="${this.onCodeChange}"
+            ></ti-editor>
+         </div>
 
-					${Array.from(this.files.entries())
-						.filter(([filename]) => filename.endsWith(".html"))
-						.map(([, code]) => document.createRange().createContextualFragment(code))}
-				</ti-output>
-			</div>
+			<ti-output code="${this.outputCode}"></ti-output>
 		`;
 	}
 }
