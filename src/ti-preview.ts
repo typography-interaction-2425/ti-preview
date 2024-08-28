@@ -9,7 +9,6 @@ export class TiPreview extends LitElement {
 			display: flex;
          border-radius: 4px;
          overflow: hidden;
-         min-height: 400px;
          width: 100%;
       }
 
@@ -17,9 +16,10 @@ export class TiPreview extends LitElement {
          background-color: #f6f8fa;
          width: 60%;
          overflow: hidden;
-         resize: horizontal;
+         resize: both;
          display: flex;
          flex-direction: column;
+         min-height: 300px;
       }
 
       ti-editor {
