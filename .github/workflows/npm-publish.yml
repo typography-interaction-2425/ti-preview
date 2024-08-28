@@ -1,5 +1,8 @@
 name: Publish to NPM
 
+permissions:
+  id-token: write
+
 on:
   release:
     types: [created]

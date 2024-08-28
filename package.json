@@ -7,6 +7,10 @@
 	"main": "ti-preview.js",
 	"module": "ti-preview.js",
 	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/typograph-interaction-2425/ti-preview.git"
+	},
 	"scripts": {
 		"build": "rimraf dist && tsc && rollup -c",
 		"build:watch": "rimraf dist && tsc --watch",
