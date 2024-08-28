@@ -13,6 +13,9 @@
 		"start": "web-dev-server --open demo/ --node-resolve",
 		"start:watch": "web-dev-server --open demo/ --node-resolve --watch"
 	},
+	"files": [
+		"dist"
+	],
 	"devDependencies": {
 		"@rollup/plugin-node-resolve": "15.2.3",
 		"@rollup/plugin-replace": "5.0.7",
