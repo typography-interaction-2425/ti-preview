@@ -1,7 +1,6 @@
 import dedent from "dedent";
-import { LitElement, css, html } from "lit";
+import { LitElement, css, html, unsafeCSS } from "lit";
 import { customElement, state } from "lit/decorators.js";
-import { unsafeCSS } from "lit";
 
 @customElement("ti-preview")
 export class TiPreview extends LitElement {
@@ -55,10 +54,10 @@ export class TiPreview extends LitElement {
 	private onCodeChange(event: CustomEvent) {
 		const { file, code } = event.detail as { file: string; code: string };
 
-      if (this.files.get(file) !== code) {
-         this.files.set(file, code);
-         this.requestUpdate();
-      }
+		if (this.files.get(file) !== code) {
+			this.files.set(file, code);
+			this.requestUpdate();
+		}
 	}
 
 	override render() {
@@ -77,10 +76,14 @@ export class TiPreview extends LitElement {
 				></ti-editor>
 				<ti-output>
 					<style>
-						${unsafeCSS(this.files.get("styles.css"))}
+						${Array.from(this.files.entries())
+							.filter(([filename]) => filename.endsWith(".css"))
+							.map(([, code]) => unsafeCSS(code))}
 					</style>
 
-					${document.createRange().createContextualFragment(this.files.get("index.html")!)}
+					${Array.from(this.files.entries())
+						.filter(([filename]) => filename.endsWith(".html"))
+						.map(([, code]) => document.createRange().createContextualFragment(code))}
 				</ti-output>
 			</div>
 		`;
