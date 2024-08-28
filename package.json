@@ -8,8 +8,8 @@
 	"module": "ti-preview.js",
 	"type": "module",
 	"scripts": {
-		"build": "tsc && rollup -c",
-		"build:watch": "tsc --watch",
+		"build": "rimraf dist && tsc && rollup -c",
+		"build:watch": "rimraf dist && tsc --watch",
 		"start": "web-dev-server --open demo/ --node-resolve",
 		"start:watch": "web-dev-server --open demo/ --node-resolve --watch"
 	},
@@ -21,11 +21,14 @@
 		"@web/dev-server-legacy": "2.1.1",
 		"@webcomponents/webcomponentsjs": "2.8.0",
 		"add": "2.0.6",
-		"lit": "3.2.0",
 		"p": "0.2.0",
+		"rimraf": "6.0.1",
 		"rollup": "4.21.1",
 		"rollup-plugin-summary": "2.0.1",
 		"ts-lit-plugin": "2.0.2",
 		"typescript": "5.5.4"
+	},
+	"dependencies": {
+		"lit": "3.2.0"
 	}
 }

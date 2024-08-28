@@ -1,5 +1,5 @@
 import { LitElement, css, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { customElement, state } from "lit/decorators.js";
 
 @customElement("ti-preview")
 export class TiPreview extends LitElement {
@@ -12,16 +12,21 @@ export class TiPreview extends LitElement {
 		}
 	`;
 
-	@property()
-	current?: string;
+	@state()
+	current: string | null = null;
 
+	@state()
 	files: Map<string, string> = new Map();
 
-	codeElements() {
+	private get fileNames() {
+		return Array.from(this.files.keys());
+	}
+
+	private codeElements() {
 		return Array.from(this.querySelectorAll("figure:has(pre):has(figcaption)"));
 	}
 
-	codeSnippets(): [string, string][] {
+	private codeSnippets(): [string, string][] {
 		return this.codeElements().map((el) => {
 			const figcaption = el.querySelector("figcaption")!;
 			const pre = el.querySelector("pre")!;
@@ -30,10 +35,14 @@ export class TiPreview extends LitElement {
 		});
 	}
 
-	updateFiles() {
+	private updateFiles() {
 		const snippets = this.codeSnippets();
 		this.files = new Map(snippets);
 		this.current = snippets[0][0];
+	}
+
+	private setCurrent(event: CustomEvent) {
+		this.current = event.detail.file as string;
 	}
 
 	override connectedCallback() {
@@ -43,7 +52,13 @@ export class TiPreview extends LitElement {
 
 	override render() {
 		return html`
-			<p>${this.current}</p>
+			<ti-files
+				current="${this.current}"
+				files="${this.fileNames.join(",")}"
+				@set-current="${this.setCurrent}"
+			></ti-files>
+         <ti-editor></ti-editor>
+			<slot></slot>
 		`;
 	}
 }
