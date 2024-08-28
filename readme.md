@@ -2,6 +2,19 @@
 
 ## Usage
 
+Wrap code snippets in a figure inside of ti-preview:
+
+```html
+<ti-preview>
+	<figure>
+		<pre>body { background-color: red; }</pre>
+		<figcaption>style.css</figcaption>
+	</figure>
+</ti-preview>
+```
+
+## Installation
+
 - Install the Web Component `npm install @rijk/ti-preview`
 
 - Either import / bundle it in your JS:
@@ -13,7 +26,7 @@ import "@rijk/ti-preview";
 - Or use the pre-bundled static file directly in your HTML:
 
 ```html
-<script src="./node_modules/@rijk/ti-preview/dist/ti-preview.js" type="module" />
+<script src="./node_modules/@rijk/ti-preview/dist/bundled/index.js" type="module" />
 ```
 
 ## Development
