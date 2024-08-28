@@ -15,7 +15,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - uses: pnpm/action-setup@v3
         name: Install pnpm
-        id: pnpm-install
+      - run: pnpm install
       - run: pnpm build
       - run: pnpm publish
         env:
