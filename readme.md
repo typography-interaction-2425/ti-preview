@@ -15,18 +15,18 @@ Wrap code snippets in a figure inside of ti-preview:
 
 ## Installation
 
-- Install the Web Component `npm install @rijk/ti-preview`
+- Install the Web Component `npm install @parsons/ti-preview`
 
 - Either import / bundle it in your JS:
 
 ```js
-import "@rijk/ti-preview";
+import "@parsons/ti-preview";
 ```
 
 - Or use the pre-bundled static file directly in your HTML:
 
 ```html
-<script src="./node_modules/@rijk/ti-preview/dist/bundled/index.js" type="module" />
+<script src="./node_modules/@parsons/ti-preview/dist/bundled/index.js" type="module" />
 ```
 
 ## Development
