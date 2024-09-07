@@ -1,30 +1,30 @@
 import { css as cssLang } from "@codemirror/lang-css";
 import { html as htmlLang } from "@codemirror/lang-html";
-import { EditorState, Extension } from "@codemirror/state";
+import { Compartment, EditorState, Extension } from "@codemirror/state";
 import { EditorView } from "@codemirror/view";
 import { minimalSetup } from "codemirror";
-import { LitElement } from "lit";
+import { css, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { css } from 'lit';
 
 @customElement("ti-editor")
 export class TiEditor extends LitElement {
-   static override styles = css`
-      :host {
-         padding: 8px;
-         display: block;
-         
-         & .cm-editor {
-            height: 100%;
-         }
+	static override styles = css`
+		:host {
+			padding: 8px;
+			display: block;
 
-         & .cm-focused {
-            outline: none;
-         }
-      }
-   `;
+			& .cm-editor {
+				height: 100%;
+			}
+
+			& .cm-focused {
+				outline: none;
+			}
+		}
+	`;
 
 	view?: EditorView;
+	readOnlyCompartment = new Compartment();
 
 	@property()
 	file: string | null = null;
@@ -32,12 +32,19 @@ export class TiEditor extends LitElement {
 	@property()
 	code: string = "";
 
+	@property({ type: Boolean })
+	readonly = false;
+
 	private getLang() {
 		return this.file?.split(".").pop();
 	}
 
 	private createState() {
-		const extensions: Extension[] = [minimalSetup, EditorView.updateListener.of(() => this.onUpdate())];
+		const extensions: Extension[] = [
+			minimalSetup,
+			EditorView.updateListener.of(() => this.onUpdate()),
+			this.readOnlyCompartment.of(EditorState.readOnly.of(this.readonly)),
+		];
 
 		const lang = this.getLang();
 
@@ -84,6 +91,10 @@ export class TiEditor extends LitElement {
 	}
 
 	override render() {
+		if (this.view?.state.readOnly !== this.readonly) {
+			this.view?.dispatch({ effects: this.readOnlyCompartment.reconfigure(EditorState.readOnly.of(this.readonly)) });
+		}
+
 		if (this.code !== this.view!.state.doc.toString()) {
 			this.view?.setState(this.createState());
 		}

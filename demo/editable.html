@@ -5,10 +5,28 @@
 		<script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 		<script src="../node_modules/lit/polyfill-support.js"></script>
 		<script type="module" src="../dist/index.js"></script>
+      <style>
+         header {
+            margin-bottom: 20px;
+            border-bottom: 1px solid black;
+         }
+      </style>
 	</head>
 
 	<body>
-		<ti-preview current="style.css">
+      <header>
+         Examples:
+         <nav>
+            <a href="./editable.html">Editable</a>
+            <a href="./inline.html">Inline</a>
+            <a href="./readonly.html">Readonly</a>
+         </nav>
+      </header>
+
+      <!-- Set the `current` attribute to start on a different tab. Defaults to the first -->
+		<ti-preview current="setup.css">
+         
+         <!-- Figures with Figcaption are the semantically recommended way to set the language and filename -->
 			<figure>
             <figcaption>index.html</figcaption>
 				<pre>
@@ -45,17 +63,23 @@
                p:not(:first-child) { margin-top: 10px; }
             </pre>
 			</figure>
-         
-         <figure>
-            <figcaption>style.css</figcaption>
-				<pre>
-               section { background-color: aquamarine; }
 
-               @media (max-width: 480px), (min-width: 600px) {
-                  section { background-color: gold; }
-               }
-            </pre>
-			</figure>
+         <!-- If figures aren't an option, a plain pre will work as well. 
+              You can set the filename through the data-filename attribute -->
+         <pre data-filename="font.css">
+            section { font-family: 'Comic Sans MS'; }
+         </pre>
+
+         <!-- Alternatively, use a language-* class to set the syntax highlighting. 
+              The filename will default to example-{index}.{lang}.
+              The filename data attribute takes precedence over the language class. -->
+         <pre class="language-css">
+            section { background-color: aquamarine; }
+
+            @media (max-width: 480px), (min-width: 600px) {
+               section { background-color: gold; }
+            }
+         </pre>
 		</ti-preview>
 	</body>
 </html>
