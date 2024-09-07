@@ -31,6 +31,9 @@ export class TiOutput extends LitElement {
 			font-family: monospace;
 			font-variant-numeric: tabular-nums;
          font-size: 12px;
+         background-color: #ffffffaa;
+         backdrop-filter: blur(5px);
+         padding: 3px 5px;
 
 			&.hidden {
 				animation: fade-out 200ms forwards;

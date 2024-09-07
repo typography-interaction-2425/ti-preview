@@ -25,6 +25,7 @@ export class TiPreview extends LitElement {
 
          &.has-output {
            width: 60%;
+           min-height: 200px;
          }
 		}
 
