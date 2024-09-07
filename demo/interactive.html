@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+		<script src="../node_modules/lit/polyfill-support.js"></script>
+		<script type="module" src="../dist/index.js"></script>
+      <style>
+         header {
+            margin-bottom: 20px;
+            border-bottom: 1px solid black;
+         }
+
+         ti-preview {
+            height: 85vh;
+         }
+      </style>
+	</head>
+
+	<body>
+      <header>
+         Examples:
+         <nav>
+            <a href="./editable.html">Editable</a>
+            <a href="./inline.html">Inline</a>
+            <a href="./readonly.html">Readonly</a>
+         </nav>
+      </header>
+
+		<ti-preview current="editor.html">
+         <figure>
+            <figcaption>setup.html</figcaption>
+            <pre>
+               &lt;script src=&quot;../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js&quot;&gt;&lt;/script&gt;
+               &lt;script src=&quot;../node_modules/lit/polyfill-support.js&quot;&gt;&lt;/script&gt;
+               &lt;script type=&quot;module&quot; src=&quot;../dist/index.js&quot;&gt;&lt;/script&gt;
+            </pre>
+         </figure>
+
+         <figure>
+            <figcaption>setup.css</figcaption>
+            <pre>
+               ti-editor {
+                  margin: 20px;
+               }
+            </pre>
+         </figure>
+
+         <figure>
+            <figcaption>editor.html</figcaption>
+            <pre>
+               &lt;ti-preview&gt;
+                  &lt;figure&gt;
+                     &lt;figcaption&gt;index.html&lt;/figcaption&gt;
+                     &lt;pre&gt;
+                        &amp;lt;h1&amp;gt;Hello World!&amp;lt;/h1&amp;gt;
+                        &amp;lt;p&amp;gt;We have to go deeper.&amp;lt;/p&amp;gt;
+                     &lt;/pre&gt;
+                  &lt;/figure&gt;
+               
+                  &lt;figure&gt;
+                     &lt;figcaption&gt;styles.css&lt;/figcaption&gt;
+                     &lt;pre&gt;
+                        h1 {
+                           font-family: &#39;Comic Sans MS&#39;;
+                        }
+               
+                        p {
+                           font-style: italic;
+                           color: hotpink;
+                        }
+                     &lt;/pre&gt;
+                  &lt;/figure&gt;
+               &lt;/ti-preview&gt;
+            </pre>
+         </figure>
+		</ti-preview>
+	</body>
+</html>

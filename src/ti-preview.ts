@@ -1,7 +1,6 @@
 import dedent from "dedent";
 import { LitElement, css, html, unsafeCSS } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
 
 @customElement("ti-preview")
 export class TiPreview extends LitElement {
@@ -12,21 +11,70 @@ export class TiPreview extends LitElement {
 			overflow: hidden;
 			width: 100%;
 			position: relative;
+
+			--code-background: #292c33;
+
+			--tab-bar-background: var(--output-background);
+			--tab-bar-active-highlight: #dcc193;
+			--tab-bar-active-background: var(--code-background);
+			--tab-bar-foreground: #acb2be;
+
+			--output-background: #22252a;
+			--output-border: 2px solid var(--code-background);
+
+			--editor-font: monospace;
+			--editor-caret-color: #acb2be;
+			--editor-selection-background: #343841;
+
+			--syntax-text: #acb2be;
+			--syntax-link: #c678dd;
+			--syntax-heading: #e06c75;
+			--syntax-emphasis: #acb2be;
+			--syntax-strong: #acb2be;
+			--syntax-keyword: #c678dd;
+			--syntax-atom: #d19a66;
+			--syntax-bool: #d19a66;
+			--syntax-url: #56b6c2;
+			--syntax-labelName: #61afef;
+			--syntax-inserted: #98c379;
+			--syntax-deleted: #e06c75;
+			--syntax-literal: #acb2be;
+			--syntax-string: #98c379;
+			--syntax-number: #e5c07b;
+			--syntax-variableName: #61afef;
+			--syntax-typeName: #e5c07b;
+			--syntax-namespace: #e5c07b;
+			--syntax-className: #e5c07b;
+			--syntax-macroName: #e06c75;
+			--syntax-propertyName: #e06c75;
+			--syntax-operator: #56b6c2;
+			--syntax-comment: #7d8799;
+			--syntax-meta: #7d8799;
+			--syntax-punctuation: #acb2be;
+			--syntax-invalid: #ffffff;
 		}
 
 		.code {
-			background-color: #f6f8fa;
+			background: var(--code-background);
 			overflow: hidden;
 			display: flex;
 			flex-direction: column;
 			height: 100%;
 			resize: both;
-         width: 100%;
+			width: 100%;
 
-         &.has-output {
-           width: 60%;
-           min-height: 200px;
-         }
+			&.has-output {
+				width: 60%;
+				min-height: 200px;
+			}
+
+			&.light {
+				color-scheme: light;
+			}
+
+			&.dark {
+				color-scheme: dark;
+			}
 		}
 
 		ti-editor {
@@ -58,6 +106,9 @@ export class TiPreview extends LitElement {
 
 	@property({ type: Boolean })
 	"hide-tabs" = false;
+
+	@property()
+	"theme" = "dark";
 
 	private get fileNames() {
 		return Array.from(this.files.keys());
@@ -123,6 +174,8 @@ export class TiPreview extends LitElement {
 						.join("")}
 
          <style>
+            html { color-scheme: ${this.theme}; }
+
             ${Array.from(this.files.entries())
 							.filter(([filename]) => filename.endsWith(".css"))
 							.map(([, code]) => unsafeCSS(code))
@@ -132,8 +185,12 @@ export class TiPreview extends LitElement {
 	}
 
 	override render() {
+		if (this.theme !== "light" && this.theme !== "dark") {
+			throw new Error(`Theme has to be one of light, dark. Given: ${this.theme}`);
+		}
+
 		return html`
-			<div class="code ${classMap({ "has-output": this["hide-output"] === false })}">
+			<div class="code ${this.theme} ${this["hide-output"] ? "" : "has-output"}">
 				${this["hide-tabs"]
 					? ""
 					: html`
@@ -147,6 +204,7 @@ export class TiPreview extends LitElement {
 				<ti-editor
 					file="${this.current}"
 					code="${this.current ? this.files.get(this.current) : ""}"
+					theme="${this.theme}"
 					?readonly="${this.readonly}"
 					@code-change="${this.onCodeChange}"
 				></ti-editor>

@@ -8,10 +8,10 @@ export class TiOutput extends LitElement {
 	static override styles = css`
 		:host {
 			display: block;
-			padding: 8px;
-			border: 2px solid #f6f8fa;
+			border: var(--output-border);
 			border-left: 0;
 			position: relative;
+         background: var(--output-background);
 		}
 
 		iframe {

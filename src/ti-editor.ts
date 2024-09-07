@@ -1,7 +1,9 @@
 import { css as cssLang } from "@codemirror/lang-css";
 import { html as htmlLang } from "@codemirror/lang-html";
+import { syntaxHighlighting } from "@codemirror/language";
 import { Compartment, EditorState, Extension } from "@codemirror/state";
 import { EditorView } from "@codemirror/view";
+import { classHighlighter } from "@lezer/highlight";
 import { minimalSetup } from "codemirror";
 import { css, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
@@ -12,6 +14,8 @@ export class TiEditor extends LitElement {
 		:host {
 			padding: 8px;
 			display: block;
+         max-height: calc(100% - 30px);
+         box-sizing: border-box;
 
 			& .cm-editor {
 				height: 100%;
@@ -19,6 +23,120 @@ export class TiEditor extends LitElement {
 
 			& .cm-focused {
 				outline: none;
+			}
+
+         & .cm-editor.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground {
+            background-color: var(--editor-selection-background);
+         }
+
+
+         & .cm-editor .cm-cursor {
+            border-left-color: var(--editor-caret-color);
+         }
+
+         & .cm-line {
+            color: var(--syntax-text);
+            font-family: var(--editor-font);
+         }
+
+			& .tok-link {
+				color: var(--syntax-link);
+			}
+
+			& .tok-heading {
+				color: var(--syntax-heading);
+			}
+
+			& .tok-emphasis {
+				color: var(--syntax-emphasis);
+			}
+
+			& .tok-strong {
+				color: var(--syntax-strong);
+			}
+
+			& .tok-keyword {
+				color: var(--syntax-keyword);
+			}
+
+			& .tok-atom {
+				color: var(--syntax-atom);
+			}
+
+			& .tok-bool {
+				color: var(--syntax-bool);
+			}
+
+			& .tok-url {
+				color: var(--syntax-url);
+			}
+
+			& .tok-labelName {
+				color: var(--syntax-labelName);
+			}
+
+			& .tok-inserted {
+				color: var(--syntax-inserted);
+			}
+
+			& .tok-deleted {
+				color: var(--syntax-deleted);
+			}
+
+			& .tok-literal {
+				color: var(--syntax-literal);
+			}
+
+			& .tok-string {
+				color: var(--syntax-string);
+			}
+
+			& .tok-number {
+				color: var(--syntax-number);
+			}
+
+			& .tok-variableName {
+				color: var(--syntax-variableName);
+			}
+
+			& .tok-typeName {
+				color: var(--syntax-typeName);
+			}
+
+			& .tok-namespace {
+				color: var(--syntax-namespace);
+			}
+
+			& .tok-className {
+				color: var(--syntax-className);
+			}
+
+			& .tok-macroName {
+				color: var(--syntax-macroName);
+			}
+
+			& .tok-propertyName {
+				color: var(--syntax-propertyName);
+			}
+
+			& .tok-operator {
+				color: var(--syntax-operator);
+			}
+
+			& .tok-comment {
+				color: var(--syntax-comment);
+			}
+
+			& .tok-meta {
+				color: var(--syntax-meta);
+			}
+
+			& .tok-punctuation {
+				color: var(--syntax-punctuation);
+			}
+
+			& .tok-invalid {
+				color: var(--syntax-invalid);
 			}
 		}
 	`;
@@ -44,6 +162,7 @@ export class TiEditor extends LitElement {
 			minimalSetup,
 			EditorView.updateListener.of(() => this.onUpdate()),
 			this.readOnlyCompartment.of(EditorState.readOnly.of(this.readonly)),
+			syntaxHighlighting(classHighlighter),
 		];
 
 		const lang = this.getLang();
