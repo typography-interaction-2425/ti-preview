@@ -37,6 +37,53 @@ Wrap code snippets in a figure inside of ti-preview:
 | `hide-tabs`   | Don't render the file selection tabs | `false` |
 | `hide-output` | Don't render the output preview      | `false` |
 
+### Theming
+
+The following CSS variables can be overridden on `ti-preview`:
+
+```css
+--code-background: #292c33;
+
+--tab-bar-background: var(--output-background);
+--tab-bar-active-highlight: #dcc193;
+--tab-bar-active-background: var(--code-background);
+--tab-bar-foreground: #acb2be;
+
+--output-background: #22252a;
+--output-border: 2px solid var(--code-background);
+
+--editor-font: monospace;
+--editor-caret-color: #acb2be;
+--editor-selection-background: #343841;
+
+--syntax-text: #acb2be;
+--syntax-link: #c678dd;
+--syntax-heading: #e06c75;
+--syntax-emphasis: #acb2be;
+--syntax-strong: #acb2be;
+--syntax-keyword: #c678dd;
+--syntax-atom: #d19a66;
+--syntax-bool: #d19a66;
+--syntax-url: #56b6c2;
+--syntax-labelName: #61afef;
+--syntax-inserted: #98c379;
+--syntax-deleted: #e06c75;
+--syntax-literal: #acb2be;
+--syntax-string: #98c379;
+--syntax-number: #e5c07b;
+--syntax-variableName: #61afef;
+--syntax-typeName: #e5c07b;
+--syntax-namespace: #e5c07b;
+--syntax-className: #e5c07b;
+--syntax-macroName: #e06c75;
+--syntax-propertyName: #e06c75;
+--syntax-operator: #56b6c2;
+--syntax-comment: #7d8799;
+--syntax-meta: #7d8799;
+--syntax-punctuation: #acb2be;
+--syntax-invalid: #ffffff;
+```
+
 ### Filenames / Syntax highlighting
 
 When using the `<figure><pre/><figcaption/></figure>` structure, the component will use the contents of the figcaption to determine the language to highlight the code in.

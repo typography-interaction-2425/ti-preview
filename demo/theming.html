@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+		<script src="../node_modules/lit/polyfill-support.js"></script>
+		<script type="module" src="../dist/index.js"></script>
+		<style>
+			header {
+				margin-bottom: 20px;
+				border-bottom: 1px solid black;
+			}
+
+			ti-preview {
+				--code-background: aliceblue;
+
+				--tab-bar-background: aqua;
+				--tab-bar-active-highlight: blanchedalmond;
+				--tab-bar-active-background: cadetblue;
+				--tab-bar-foreground: chartreuse;
+
+				--output-background: cornflowerblue;
+				--output-border: 2px solid papayawhip;
+
+				--editor-font: monospace;
+				--editor-caret-color: crimson;
+				--editor-selection-background: darkseagreen;
+
+				--syntax-text: deeppink;
+				--syntax-link: gainsboro;
+				--syntax-heading: indianred;
+				--syntax-emphasis: lavenderblush;
+				--syntax-strong: lawngreen;
+				--syntax-keyword: lightgoldenrodyellow;
+				--syntax-atom: lightsalmon;
+				--syntax-bool: magenta;
+				--syntax-url: mediumaquamarine;
+				--syntax-labelName: mediumpurple;
+				--syntax-inserted: mediumvioletred;
+				--syntax-deleted: mistyrose;
+				--syntax-literal: moccasin;
+				--syntax-string: olivedrab;
+				--syntax-number: palegoldenrod;
+				--syntax-variableName: paleturquoise;
+				--syntax-typeName: rosybrown;
+				--syntax-namespace: skyblue;
+				--syntax-className: springgreen;
+				--syntax-macroName: tomato;
+				--syntax-propertyName: yellowgreen;
+				--syntax-operator: orangered;
+				--syntax-comment: linen;
+				--syntax-meta: lightyellow;
+				--syntax-punctuation: lightcoral;
+				--syntax-invalid: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			Examples:
+			<nav>
+				<a href="./editable.html">Editable</a>
+				<a href="./inline.html">Inline</a>
+				<a href="./readonly.html">Readonly</a>
+				<a href="./interactive.html">Interactive</a>
+				<a href="./theming.html">Theming</a>
+			</nav>
+		</header>
+
+		<!-- Set the `theme` attribute to light to render the output in the browser light color scheme  -->
+		<ti-preview theme="light">
+			<figure>
+				<figcaption>index.html</figcaption>
+				<pre>
+               &lt;!doctype html&gt;
+               &lt;html&gt;
+                  &lt;head&gt;
+                     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+                     &lt;link href=&quot;/assets/reset.css&quot; rel=&quot;stylesheet&quot;&gt;
+                     &lt;link href=&quot;setup.css&quot; rel=&quot;stylesheet&quot;&gt;
+                     &lt;link href=&quot;style.css&quot; rel=&quot;stylesheet&quot;&gt;
+                  &lt;/head&gt;
+                  &lt;body&gt;
+                     &lt;section&gt;
+                        &lt;p&gt;This element is responsive.&lt;/p&gt;
+                        &lt;p&gt;I’ll add some text more here so we have something to look at and so that it wraps, but the text itself isn’t important, at the moment.&lt;/p&gt;
+                     &lt;/section&gt;
+                  &lt;/body&gt;
+               &lt;/html&gt;
+            </pre
+				>
+			</figure>
+
+			<figure>
+				<figcaption>style.css</figcaption>
+				<pre>
+               body {
+                  font-family: sans-serif;
+                  padding: 20px;
+               }
+
+               p {
+                  color: blue;
+                  background: white;
+               }
+            </pre
+				>
+			</figure>
+		</ti-preview>
+	</body>
+</html>
