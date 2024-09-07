@@ -39,6 +39,9 @@ jobs:
       - name: Install dependencies
         shell: bash
         run: pnpm install
+      - name: Build dist
+        shell: bash
+        run: pnpm build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
