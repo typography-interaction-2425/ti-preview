@@ -63,12 +63,12 @@ export class TiPreview extends LitElement {
 			display: flex;
 			flex-direction: column;
 			height: 100%;
-			resize: both;
 			width: 100%;
 
 			&.has-output {
 				width: 60%;
 				min-height: 200px;
+            resize: both;
 			}
 
 			&.light {
