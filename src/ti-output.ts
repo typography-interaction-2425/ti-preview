@@ -25,8 +25,7 @@ export class TiOutput extends LitElement {
 		p {
 			position: absolute;
 			margin: 0;
-			inset-inline-start: 50%;
-         transform: translateX(-50%);
+			inset-inline-start: 4px;
 			inset-block-end: 4px;
 			font-family: monospace;
 			font-variant-numeric: tabular-nums;

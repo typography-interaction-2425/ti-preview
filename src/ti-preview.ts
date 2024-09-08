@@ -6,7 +6,7 @@ import { customElement, property, state } from "lit/decorators.js";
 export class TiPreview extends LitElement {
 	static override styles = css`
 		:host {
-			display: flex;
+			display: flex !important;
 			border-radius: 4px;
 			overflow: hidden;
 			width: 100%;
@@ -83,7 +83,8 @@ export class TiPreview extends LitElement {
 
 		ti-output {
 			flex-grow: 1;
-			flex-basis: 0;
+         flex-basis: 0;
+         min-width: 180px;
 		}
 	`;
 
