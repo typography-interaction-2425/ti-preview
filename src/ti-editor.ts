@@ -16,6 +16,7 @@ export class TiEditor extends LitElement {
 			display: block;
          max-height: calc(100% - 30px);
          box-sizing: border-box;
+         font-size: var(--editor-font-size);
 
 			& .cm-editor {
 				height: 100%;
@@ -36,7 +37,7 @@ export class TiEditor extends LitElement {
 
          & .cm-line {
             color: var(--syntax-text);
-            font-family: var(--editor-font);
+            font-family: var(--editor-font-family);
          }
 
 			& .tok-link {

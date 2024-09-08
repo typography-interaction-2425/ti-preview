@@ -6,13 +6,6 @@ import { customElement, property, state } from "lit/decorators.js";
 export class TiPreview extends LitElement {
 	static override styles = css`
 		:host {
-			all: initial; /* Don't inherit anything from the light dom */
-			display: flex !important;
-			border-radius: 4px;
-			overflow: hidden;
-			width: 100%;
-			position: relative;
-
 			--code-background: #292c33;
 
 			--tab-bar-background: var(--output-background);
@@ -24,7 +17,7 @@ export class TiPreview extends LitElement {
 			--output-border: 2px solid var(--code-background);
 
 			--editor-font-family: monospace;
-			--editor-font-size: 1rem;
+			--editor-font-size: inherit;
 			--editor-caret-color: #acb2be;
 			--editor-selection-background: #343841;
 
@@ -54,6 +47,14 @@ export class TiPreview extends LitElement {
 			--syntax-meta: #7d8799;
 			--syntax-punctuation: #acb2be;
 			--syntax-invalid: #ffffff;
+		}
+
+		.container {
+			display: flex;
+			border-radius: 4px;
+			overflow: hidden;
+			width: 100%;
+			position: relative;
 		}
 
 		.code {
@@ -196,31 +197,33 @@ export class TiPreview extends LitElement {
 		}
 
 		return html`
-			<div class="code ${this.theme} ${this["hide-output"] ? "" : "has-output"}">
-				${this["hide-tabs"]
+			<div class="container">
+				<div class="code ${this.theme} ${this["hide-output"] ? "" : "has-output"}">
+					${this["hide-tabs"]
+						? ""
+						: html`
+								<ti-tabs
+									current="${this.current}"
+									files="${this.fileNames.join(",")}"
+									@set-current="${this.setCurrent}"
+								></ti-tabs>
+						  `}
+
+					<ti-editor
+						file="${this.current}"
+						code="${this.current ? this.files.get(this.current) : ""}"
+						theme="${this.theme}"
+						?readonly="${this.readonly}"
+						@code-change="${this.onCodeChange}"
+					></ti-editor>
+				</div>
+
+				${this["hide-output"]
 					? ""
 					: html`
-							<ti-tabs
-								current="${this.current}"
-								files="${this.fileNames.join(",")}"
-								@set-current="${this.setCurrent}"
-							></ti-tabs>
+							<ti-output code="${this.outputCode}"></ti-output>
 					  `}
-
-				<ti-editor
-					file="${this.current}"
-					code="${this.current ? this.files.get(this.current) : ""}"
-					theme="${this.theme}"
-					?readonly="${this.readonly}"
-					@code-change="${this.onCodeChange}"
-				></ti-editor>
 			</div>
-
-			${this["hide-output"]
-				? ""
-				: html`
-						<ti-output code="${this.outputCode}"></ti-output>
-				  `}
 		`;
 	}
 }
