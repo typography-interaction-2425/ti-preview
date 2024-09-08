@@ -133,7 +133,10 @@ export class TiPreview extends LitElement {
 			if (!filename) {
 				let ext;
 
-				for (const className of pre.classList) {
+            // Some markdown renderers will nest a <code> inside the <pre> for code blocks
+            const classEl = pre.querySelector('code') ?? pre;
+
+				for (const className of classEl.classList) {
 					if (className.startsWith("language-")) {
 						ext = className.split("language-")[1]!;
 						break;
