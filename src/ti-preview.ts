@@ -6,6 +6,7 @@ import { customElement, property, state } from "lit/decorators.js";
 export class TiPreview extends LitElement {
 	static override styles = css`
 		:host {
+			all: initial; /* Don't inherit anything from the light dom */
 			display: flex !important;
 			border-radius: 4px;
 			overflow: hidden;
@@ -22,7 +23,8 @@ export class TiPreview extends LitElement {
 			--output-background: #22252a;
 			--output-border: 2px solid var(--code-background);
 
-			--editor-font: monospace;
+			--editor-font-family: monospace;
+			--editor-font-size: 1rem;
 			--editor-caret-color: #acb2be;
 			--editor-selection-background: #343841;
 
@@ -83,8 +85,8 @@ export class TiPreview extends LitElement {
 
 		ti-output {
 			flex-grow: 1;
-         flex-basis: 0;
-         min-width: 180px;
+			flex-basis: 0;
+			min-width: 180px;
 		}
 	`;
 
@@ -134,8 +136,8 @@ export class TiPreview extends LitElement {
 			if (!filename) {
 				let ext;
 
-            // Some markdown renderers will nest a <code> inside the <pre> for code blocks
-            const classEl = pre.querySelector('code') ?? pre;
+				// Some markdown renderers will nest a <code> inside the <pre> for code blocks
+				const classEl = pre.querySelector("code") ?? pre;
 
 				for (const className of classEl.classList) {
 					if (className.startsWith("language-")) {
