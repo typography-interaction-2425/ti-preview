@@ -68,7 +68,7 @@ export class TiPreview extends LitElement {
 			&.has-output {
 				width: 60%;
 				min-height: 200px;
-            resize: both;
+				resize: both;
 			}
 
 			&.light {
@@ -114,6 +114,9 @@ export class TiPreview extends LitElement {
 	@property()
 	"theme" = "dark";
 
+	@property({ type: Boolean })
+	dedent = false;
+
 	private get fileNames() {
 		return Array.from(this.files.keys());
 	}
@@ -128,7 +131,7 @@ export class TiPreview extends LitElement {
 				const figcaption = el.querySelector("figcaption")!;
 				const pre = el.querySelector("pre")!;
 
-				return [figcaption.innerText, dedent(pre.innerText)];
+				return [figcaption.innerText, this.dedent ? dedent(pre.innerText) : pre.innerText];
 			}
 
 			const pre = el as HTMLPreElement;
@@ -150,7 +153,7 @@ export class TiPreview extends LitElement {
 				filename = `example-${index + 1}.${ext}`;
 			}
 
-			return [filename, dedent(pre.innerText)];
+			return [filename, this.dedent ? dedent(pre.innerText) : pre.innerText];
 		});
 	}
 
