@@ -50,11 +50,13 @@ export class TiPreview extends LitElement {
 		}
 
 		.container {
+			all: initial;
 			display: flex;
 			border-radius: 4px;
 			overflow: hidden;
 			width: 100%;
 			position: relative;
+         height: 100%;
 		}
 
 		.code {
@@ -68,7 +70,7 @@ export class TiPreview extends LitElement {
 			&.has-output {
 				width: 60%;
 				min-height: 200px;
-				resize: both;
+				resize: horizontal;
 			}
 
 			&.light {
@@ -91,11 +93,6 @@ export class TiPreview extends LitElement {
 		}
 	`;
 
-	constructor() {
-		super();
-		this.updateFiles();
-	}
-
 	@property()
 	current: string | null = null;
 
@@ -111,11 +108,16 @@ export class TiPreview extends LitElement {
 	@property({ type: Boolean })
 	"hide-tabs" = false;
 
+	@property({ type: Boolean })
+	dedent = false;
+
 	@property()
 	"theme" = "dark";
 
-	@property({ type: Boolean })
-	dedent = false;
+   override connectedCallback() {
+		super.connectedCallback();
+		this.updateFiles();
+	}
 
 	private get fileNames() {
 		return Array.from(this.files.keys());
@@ -131,7 +133,7 @@ export class TiPreview extends LitElement {
 				const figcaption = el.querySelector("figcaption")!;
 				const pre = el.querySelector("pre")!;
 
-				return [figcaption.innerText, this.dedent ? dedent(pre.innerText) : pre.innerText];
+				return [figcaption.innerText, this.dedent ? dedent(pre.innerText) : pre.innerText.trim()];
 			}
 
 			const pre = el as HTMLPreElement;
@@ -153,14 +155,14 @@ export class TiPreview extends LitElement {
 				filename = `example-${index + 1}.${ext}`;
 			}
 
-			return [filename, this.dedent ? dedent(pre.innerText) : pre.innerText];
+			return [filename, this.dedent ? dedent(pre.innerText) : pre.innerText.trim()];
 		});
 	}
 
 	private updateFiles() {
 		const snippets = this.codeSnippets();
 		this.files = new Map(snippets);
-		this.current = snippets[0][0];
+		this.current ??= snippets[0][0];
 	}
 
 	private setCurrent(event: CustomEvent) {

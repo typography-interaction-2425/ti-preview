@@ -14,13 +14,8 @@ export class TiEditor extends LitElement {
 		:host {
 			padding: 8px;
 			display: block;
-         max-height: calc(100% - 30px);
          box-sizing: border-box;
          font-size: var(--editor-font-size);
-
-			& .cm-editor {
-				height: 100%;
-			}
 
 			& .cm-focused {
 				outline: none;

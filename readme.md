@@ -36,6 +36,7 @@ Wrap code snippets in a figure inside of ti-preview:
 | `readonly`    | Prevent the code from being changed  | `false` |
 | `hide-tabs`   | Don't render the file selection tabs | `false` |
 | `hide-output` | Don't render the output preview      | `false` |
+| `dedent`      | Automatically dedent code snippets   | `false` |
 
 ### Theming
 
