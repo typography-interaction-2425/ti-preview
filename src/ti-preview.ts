@@ -56,7 +56,15 @@ export class TiPreview extends LitElement {
 			overflow: hidden;
 			width: 100%;
 			position: relative;
-         height: 100%;
+			height: 100%;
+
+			/* Type rendering. */
+			-moz-osx-font-smoothing: grayscale;
+			-webkit-font-smoothing: antialiased;
+			-webkit-text-size-adjust: none;
+			font-kerning: normal;
+			font-smooth: always;
+			text-rendering: optimizeLegibility;
 		}
 
 		.code {
