@@ -12,6 +12,8 @@ export class TiTabs extends LitElement {
 
       nav {
          display: flex;
+
+         &:has(a:only-child) { display: none }
       }
 
       a {
