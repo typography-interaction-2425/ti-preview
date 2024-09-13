@@ -6,9 +6,7 @@ import { customElement, property, state } from "lit/decorators.js";
 export class TiPreview extends LitElement {
 	static override styles = css`
 		:host {
-			--code-background: #292c33;
-
-			--tab-bar-active-background: var(--code-background);
+			--tab-bar-active-background: var(--editor-background);
 			--tab-bar-active-highlight: #dcc193;
 			--tab-bar-background: var(--output-background);
 			--tab-bar-font-family: system-ui, sans-serif;
@@ -17,8 +15,9 @@ export class TiPreview extends LitElement {
 			--tab-bar-padding: 8px 12px;
 
 			--output-background: #22252a;
-			--output-border: 2px solid var(--code-background);
+			--output-border: 2px solid var(--editor-background);
 
+			--editor-background: #292c33;
 			--editor-caret-color: #acb2be;
 			--editor-font-family: monospace;
 			--editor-font-size: inherit;
@@ -57,7 +56,7 @@ export class TiPreview extends LitElement {
 		.container {
 			all: initial;
 			display: flex;
-			border-radius: 4px;
+			border-radius: var(--container-border-radius);
 			overflow: hidden;
 			width: 100%;
 			position: relative;
@@ -73,7 +72,7 @@ export class TiPreview extends LitElement {
 		}
 
 		.code {
-			background: var(--code-background);
+			background: var(--editor-background);
 			display: flex;
 			flex-direction: column;
 			height: 100%;
