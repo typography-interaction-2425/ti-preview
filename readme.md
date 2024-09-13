@@ -43,6 +43,8 @@ Wrap code snippets in a figure inside of ti-preview:
 The following CSS variables can be overridden on `ti-preview`:
 
 ```css
+--container-border-radius: 4px;
+
 --tab-bar-active-background: var(--editor-background);
 --tab-bar-active-highlight: #dcc193;
 --tab-bar-background: var(--output-background);

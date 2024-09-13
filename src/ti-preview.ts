@@ -6,6 +6,8 @@ import { customElement, property, state } from "lit/decorators.js";
 export class TiPreview extends LitElement {
 	static override styles = css`
 		:host {
+			--container-border-radius: 4px;
+
 			--tab-bar-active-background: var(--editor-background);
 			--tab-bar-active-highlight: #dcc193;
 			--tab-bar-background: var(--output-background);
