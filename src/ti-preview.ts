@@ -71,11 +71,14 @@ export class TiPreview extends LitElement {
 
 		.code {
 			background: var(--code-background);
-			overflow: hidden;
 			display: flex;
 			flex-direction: column;
 			height: 100%;
+			overflow: scroll;
+			scrollbar-width: none;
 			width: 100%;
+
+			&::-webkit-scrollbar { display: none }
 
 			&.has-output {
 				width: 60%;
