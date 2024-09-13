@@ -45,10 +45,13 @@ The following CSS variables can be overridden on `ti-preview`:
 ```css
 --code-background: #292c33;
 
---tab-bar-background: var(--output-background);
---tab-bar-active-highlight: #dcc193;
 --tab-bar-active-background: var(--code-background);
+--tab-bar-active-highlight: #dcc193;
+--tab-bar-background: var(--output-background);
+--tab-bar-font-family: system-ui, sans-serif;
+--tab-bar-font-size: 12px;
 --tab-bar-foreground: #acb2be;
+--tab-bar-padding: 8px 12px;
 
 --output-background: #22252a;
 --output-border: 2px solid var(--code-background);
