@@ -15,7 +15,6 @@ export class TiEditor extends LitElement {
 			box-sizing: border-box;
 			display: block;
 			font-size: var(--editor-font-size);
-			padding: var(--editor-padding);
 
 			& .cm-focused {
 				outline: none;
@@ -36,7 +35,7 @@ export class TiEditor extends LitElement {
 
 			& .cm-content {
 				font-family: var(--editor-font-family);
-				padding: initial;
+				padding: var(--editor-padding);
 			}
 
 			& .cm-line {
