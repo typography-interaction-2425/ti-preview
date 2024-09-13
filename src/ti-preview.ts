@@ -18,6 +18,8 @@ export class TiPreview extends LitElement {
 
 			--editor-font-family: monospace;
 			--editor-font-size: inherit;
+			--editor-line-height: 1.5;
+			--editor-padding: 8px;
 			--editor-caret-color: #acb2be;
 			--editor-selection-background: #343841;
 

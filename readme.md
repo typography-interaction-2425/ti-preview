@@ -55,6 +55,8 @@ The following CSS variables can be overridden on `ti-preview`:
 
 --editor-font-family: monospace;
 --editor-font-size: 1rem;
+--editor-line-height: 1.5;
+--editor-padding: 8px;
 --editor-caret-color: #acb2be;
 --editor-selection-background: #343841;
 

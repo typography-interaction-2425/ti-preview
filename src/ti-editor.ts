@@ -12,28 +12,37 @@ import { customElement, property } from "lit/decorators.js";
 export class TiEditor extends LitElement {
 	static override styles = css`
 		:host {
-			padding: 8px;
+			box-sizing: border-box;
 			display: block;
-         box-sizing: border-box;
-         font-size: var(--editor-font-size);
+			font-size: var(--editor-font-size);
+			padding: var(--editor-padding);
 
 			& .cm-focused {
 				outline: none;
 			}
 
-         & .cm-editor.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground {
-            background-color: var(--editor-selection-background);
-         }
+			& .cm-editor.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground {
+				background-color: var(--editor-selection-background);
+			}
 
 
-         & .cm-editor .cm-cursor {
-            border-left-color: var(--editor-caret-color);
-         }
+			& .cm-editor .cm-cursor {
+				border-left-color: var(--editor-caret-color);
+			}
 
-         & .cm-line {
-            color: var(--syntax-text);
-            font-family: var(--editor-font-family);
-         }
+			& .cm-scroller {
+				line-height: var(--editor-line-height);
+			}
+
+			& .cm-content {
+				font-family: var(--editor-font-family);
+				padding: initial;
+			}
+
+			& .cm-line {
+				color: var(--syntax-text);
+				padding: initial;
+			}
 
 			& .tok-link {
 				color: var(--syntax-link);
