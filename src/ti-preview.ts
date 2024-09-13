@@ -188,20 +188,18 @@ export class TiPreview extends LitElement {
 
 	private get outputCode() {
 		return `
-         ${Array.from(this.files.entries())
+			${Array.from(this.files.entries())
 						.filter(([filename]) => filename.endsWith(".html"))
 						.map(([, code]) => code)
 						.join("")}
 
-         <style>
-            html { color-scheme: ${this.theme}; }
-
-            ${Array.from(this.files.entries())
-							.filter(([filename]) => filename.endsWith(".css"))
-							.map(([, code]) => unsafeCSS(code))
-							.join("")}
-         </style>
-      `;
+			<style>
+				${Array.from(this.files.entries())
+								.filter(([filename]) => filename.endsWith(".css"))
+								.map(([, code]) => unsafeCSS(code))
+								.join("")}
+			</style>
+		`;
 	}
 
 	override render() {
