@@ -19,11 +19,11 @@ export class TiPreview extends LitElement {
 			--output-background: #22252a;
 			--output-border: 2px solid var(--code-background);
 
+			--editor-caret-color: #acb2be;
 			--editor-font-family: monospace;
 			--editor-font-size: inherit;
-			--editor-line-height: 1.5;
+			--editor-line-height: 1.2;
 			--editor-padding: 8px;
-			--editor-caret-color: #acb2be;
 			--editor-selection-background: #343841;
 
 			--syntax-text: #acb2be;
