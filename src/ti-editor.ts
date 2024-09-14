@@ -15,132 +15,133 @@ export class TiEditor extends LitElement {
 			box-sizing: border-box;
 			display: block;
 			font-size: var(--editor-font-size);
+		}
 
-			& .cm-focused {
+		.cm-editor {
+			&.cm-focused {
 				outline: none;
 			}
 
-			& .cm-editor.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground {
-				background-color: var(--editor-selection-background);
-			}
-
-
-			& .cm-editor .cm-cursor {
-				border-left-color: var(--editor-caret-color);
-			}
-
-			& .cm-scroller {
+			.cm-scroller {
 				line-height: var(--editor-line-height);
-			}
 
-			& .cm-content {
-				font-family: var(--editor-font-family);
-				padding: var(--editor-padding);
-			}
+				.cm-content {
+					font-family: var(--editor-font-family);
+					padding: var(--editor-padding);
 
-			& .cm-line {
-				color: var(--syntax-text);
-				padding: initial;
-			}
+					.cm-line {
+						color: var(--syntax-text);
+						padding: initial;
 
-			& .tok-link {
-				color: var(--syntax-link);
-			}
+						.tok-link {
+							color: var(--syntax-link);
+						}
 
-			& .tok-heading {
-				color: var(--syntax-heading);
-			}
+						.tok-heading {
+							color: var(--syntax-heading);
+						}
 
-			& .tok-emphasis {
-				color: var(--syntax-emphasis);
-			}
+						.tok-emphasis {
+							color: var(--syntax-emphasis);
+						}
 
-			& .tok-strong {
-				color: var(--syntax-strong);
-			}
+						.tok-strong {
+							color: var(--syntax-strong);
+						}
 
-			& .tok-keyword {
-				color: var(--syntax-keyword);
-			}
+						.tok-keyword {
+							color: var(--syntax-keyword);
+						}
 
-			& .tok-atom {
-				color: var(--syntax-atom);
-			}
+						.tok-atom {
+							color: var(--syntax-atom);
+						}
 
-			& .tok-bool {
-				color: var(--syntax-bool);
-			}
+						.tok-bool {
+							color: var(--syntax-bool);
+						}
 
-			& .tok-url {
-				color: var(--syntax-url);
-			}
+						.tok-url {
+							color: var(--syntax-url);
+						}
 
-			& .tok-labelName {
-				color: var(--syntax-labelName);
-			}
+						.tok-labelName {
+							color: var(--syntax-labelName);
+						}
 
-			& .tok-inserted {
-				color: var(--syntax-inserted);
-			}
+						.tok-inserted {
+							color: var(--syntax-inserted);
+						}
 
-			& .tok-deleted {
-				color: var(--syntax-deleted);
-			}
+						.tok-deleted {
+							color: var(--syntax-deleted);
+						}
 
-			& .tok-literal {
-				color: var(--syntax-literal);
-			}
+						.tok-literal {
+							color: var(--syntax-literal);
+						}
 
-			& .tok-string {
-				color: var(--syntax-string);
-			}
+						.tok-string {
+							color: var(--syntax-string);
+						}
 
-			& .tok-number {
-				color: var(--syntax-number);
-			}
+						.tok-number {
+							color: var(--syntax-number);
+						}
 
-			& .tok-variableName {
-				color: var(--syntax-variableName);
-			}
+						.tok-variableName {
+							color: var(--syntax-variableName);
+						}
 
-			& .tok-typeName {
-				color: var(--syntax-typeName);
-			}
+						.tok-typeName {
+							color: var(--syntax-typeName);
+						}
 
-			& .tok-namespace {
-				color: var(--syntax-namespace);
-			}
+						.tok-namespace {
+							color: var(--syntax-namespace);
+						}
 
-			& .tok-className {
-				color: var(--syntax-className);
-			}
+						.tok-className {
+							color: var(--syntax-className);
+						}
 
-			& .tok-macroName {
-				color: var(--syntax-macroName);
-			}
+						.tok-macroName {
+							color: var(--syntax-macroName);
+						}
 
-			& .tok-propertyName {
-				color: var(--syntax-propertyName);
-			}
+						.tok-propertyName {
+							color: var(--syntax-propertyName);
+						}
 
-			& .tok-operator {
-				color: var(--syntax-operator);
-			}
+						.tok-operator {
+							color: var(--syntax-operator);
+						}
 
-			& .tok-comment {
-				color: var(--syntax-comment);
-			}
+						.tok-comment {
+							color: var(--syntax-comment);
+						}
 
-			& .tok-meta {
-				color: var(--syntax-meta);
-			}
+						.tok-meta {
+							color: var(--syntax-meta);
+						}
 
-			& .tok-punctuation {
-				color: var(--syntax-punctuation);
-			}
+						.tok-punctuation {
+							color: var(--syntax-punctuation);
+						}
 
-			& .tok-invalid {
-				color: var(--syntax-invalid);
+						.tok-invalid {
+							color: var(--syntax-invalid);
+						}
+					}
+				}
+
+				.cm-layer.cm-cursorLayer .cm-cursor {
+					border-left-color: var(--editor-caret-color);
+				}
+
+				.cm-layer.cm-selectionLayer .cm-selectionBackground {
+					background-color: var(--editor-selection-background);
+				}
 			}
 		}
 	`;
