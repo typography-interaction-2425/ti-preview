@@ -52,8 +52,8 @@ export class TiOutput extends LitElement {
 	@property()
 	code: string = "";
 
-   @property()
-   base: string | null = null;
+	@property()
+	base: string | null = null;
 
 	private iframe = document.createElement("iframe");
 	private ro = new ResizeObserver((entries) => this.onResize(entries));

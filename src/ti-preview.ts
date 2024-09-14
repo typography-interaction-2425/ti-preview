@@ -131,7 +131,7 @@ export class TiPreview extends LitElement {
 	@property()
 	"theme" = "dark";
 
-   override connectedCallback() {
+	override connectedCallback() {
 		super.connectedCallback();
 		this.updateFiles();
 	}
