@@ -4,43 +4,43 @@ import { classMap } from "lit/directives/class-map.js";
 
 @customElement("ti-tabs")
 export class TiTabs extends LitElement {
-   static override styles = css`
-      :host {
-         background: var(--tab-bar-background);
-         display: block;
-      }
+	static override styles = css`
+		:host {
+			background: var(--tab-bar-background);
+			display: block;
+		}
 
-      nav {
-         display: flex;
+		nav {
+			display: flex;
 
-         &:has(a:only-child) { display: none }
-      }
+			&:has(a:only-child) { display: none }
+		}
 
-      a {
-         color: var(--tab-bar-foreground);
-         font-family: var(--tab-bar-font-family);
-         font-size: var(--tab-bar-font-size);
-         margin: 0;
-         padding: var(--tab-bar-padding);
-         position: sticky;
-         text-decoration: none;
-         top: 0;
+		a {
+			color: var(--tab-bar-foreground);
+			font-family: var(--tab-bar-font-family);
+			font-size: var(--tab-bar-font-size);
+			margin: 0;
+			padding: var(--tab-bar-padding);
+			position: sticky;
+			text-decoration: none;
+			top: 0;
 
-         &:hover, &.active {
-            background: var(--tab-bar-active-background);
-         }
+			&:hover, &.active {
+				background: var(--tab-bar-active-background);
+			}
 
-         &.active::after {
-            content: "";
-            position: absolute;
-            inset-block: 0;
-            inset-inline: 0;
-            inline-size: 100%;
-            block-size: 2px;
-            background: var(--tab-bar-active-highlight);
-         }
-      }
-   `;
+			&.active::after {
+				content: "";
+				position: absolute;
+				inset-block: 0;
+				inset-inline: 0;
+				inline-size: 100%;
+				block-size: 2px;
+				background: var(--tab-bar-active-highlight);
+			}
+		}
+	`;
 
 	@property()
 	current: string | null = null;
