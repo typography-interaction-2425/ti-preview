@@ -8,6 +8,9 @@ export class TiTabs extends LitElement {
 		:host {
 			background: var(--tab-bar-background);
 			display: block;
+			position: sticky;
+			top: 0;
+			z-index: 1;
 		}
 
 		nav {
@@ -22,9 +25,8 @@ export class TiTabs extends LitElement {
 			font-size: var(--tab-bar-font-size);
 			margin: 0;
 			padding: var(--tab-bar-padding);
-			position: sticky;
+			position: relative;
 			text-decoration: none;
-			top: 0;
 
 			&:hover, &.active {
 				background: var(--tab-bar-active-background);
