@@ -96,6 +96,7 @@ The following CSS variables can be overridden on `ti-preview`:
 --syntax-meta: #7d8799;
 --syntax-punctuation: #acb2be;
 --syntax-invalid: #ffffff;
+--syntax-whitespace: transparent;
 ```
 
 ### Filenames / Syntax highlighting

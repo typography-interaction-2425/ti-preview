@@ -59,6 +59,7 @@ export class TiPreview extends LitElement {
 			--syntax-meta: #7d8799;
 			--syntax-punctuation: #acb2be;
 			--syntax-invalid: #ffffff;
+			--syntax-whitespace: transparent;
 		}
 
 		.container {

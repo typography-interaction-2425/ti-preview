@@ -2,7 +2,7 @@ import { css as cssLang } from "@codemirror/lang-css";
 import { html as htmlLang } from "@codemirror/lang-html";
 import { syntaxHighlighting } from "@codemirror/language";
 import { Compartment, EditorState, Extension } from "@codemirror/state";
-import { EditorView } from "@codemirror/view";
+import { EditorView, highlightWhitespace } from "@codemirror/view";
 import { classHighlighter } from "@lezer/highlight";
 import { minimalSetup } from "codemirror";
 import { css, LitElement } from "lit";
@@ -132,6 +132,22 @@ export class TiEditor extends LitElement {
 						.tok-invalid {
 							color: var(--syntax-invalid);
 						}
+
+						.cm-highlightSpace::before {
+							color: var(--syntax-whitespace);
+						}
+
+						.cm-highlightTab {
+							background-image: none;
+							position: relative;
+
+							&::before {
+								color: var(--syntax-whitespace);
+								content: '⇥';
+								pointer-events: none;
+								position: absolute;
+							}
+						}
 					}
 				}
 
@@ -168,6 +184,7 @@ export class TiEditor extends LitElement {
 			EditorView.updateListener.of(() => this.onUpdate()),
 			this.readOnlyCompartment.of(EditorState.readOnly.of(this.readonly)),
 			syntaxHighlighting(classHighlighter),
+			highlightWhitespace(),
 		];
 
 		const lang = this.getLang();
