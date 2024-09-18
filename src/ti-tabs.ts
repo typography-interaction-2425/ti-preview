@@ -6,18 +6,18 @@ import { classMap } from "lit/directives/class-map.js";
 export class TiTabs extends LitElement {
 	static override styles = css`
 		:host {
-			-webkit-backdrop-filter: var(--tab-bar-filter);
-			backdrop-filter: var(--tab-bar-filter);
-			background: var(--tab-bar-background);
 			display: block;
-			margin: var(--tab-bar-margin);
 			position: sticky;
 			top: 0;
 			z-index: 1;
 		}
 
 		nav {
+			-webkit-backdrop-filter: var(--tab-bar-filter);
+			backdrop-filter: var(--tab-bar-filter);
+			background: var(--tab-bar-background);
 			display: flex;
+			margin: var(--tab-bar-margin);
 
 			&:has(a:only-child) { display: none }
 		}
