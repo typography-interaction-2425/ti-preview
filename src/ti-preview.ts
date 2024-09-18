@@ -9,11 +9,17 @@ export class TiPreview extends LitElement {
 			--container-border-radius: 4px;
 
 			--tab-bar-active-background: var(--editor-background);
+			--tab-bar-active-border-radius: initial;
+			--tab-bar-active-foreground: var(--tab-bar-foreground);
 			--tab-bar-active-highlight: #dcc193;
+			--tab-bar-active-inset: calc(100% - 2px) 0 0;
+			--tab-bar-active-weight: normal;
 			--tab-bar-background: var(--output-background);
+			--tab-bar-filter: none;
 			--tab-bar-font-family: system-ui, sans-serif;
 			--tab-bar-font-size: 12px;
 			--tab-bar-foreground: #acb2be;
+			--tab-bar-margin: initial;
 			--tab-bar-padding: 8px 12px;
 
 			--output-background: #22252a;

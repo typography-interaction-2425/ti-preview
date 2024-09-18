@@ -6,8 +6,11 @@ import { classMap } from "lit/directives/class-map.js";
 export class TiTabs extends LitElement {
 	static override styles = css`
 		:host {
+			-webkit-backdrop-filter: var(--tab-bar-filter);
+			backdrop-filter: var(--tab-bar-filter);
 			background: var(--tab-bar-background);
 			display: block;
+			margin: var(--tab-bar-margin);
 			position: sticky;
 			top: 0;
 			z-index: 1;
@@ -32,14 +35,17 @@ export class TiTabs extends LitElement {
 				background: var(--tab-bar-active-background);
 			}
 
+			&.active {
+				color: var(--tab-bar-active-foreground);
+				font-weight: var(--tab-bar-active-weight);
+			}
+
 			&.active::after {
-				content: "";
-				position: absolute;
-				inset-block: 0;
-				inset-inline: 0;
-				inline-size: 100%;
-				block-size: 2px;
 				background: var(--tab-bar-active-highlight);
+				border-radius: var(--tab-bar-active-border-radius);
+				content: "";
+				inset: var(--tab-bar-active-inset);
+				position: absolute;
 			}
 		}
 	`;
