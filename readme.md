@@ -33,6 +33,7 @@ Wrap code snippets in a figure inside of ti-preview:
 
 | Attribute     | Description                          | Default |
 | ------------- | ------------------------------------ | ------- |
+| `base`        | Pass a different Document Base URL   | `null`  |
 | `readonly`    | Prevent the code from being changed  | `false` |
 | `hide-tabs`   | Don't render the file selection tabs | `false` |
 | `hide-output` | Don't render the output preview      | `false` |

@@ -87,7 +87,8 @@ export class TiOutput extends LitElement {
 	}
 
 	private get sanitized() {
-		return this.code.replaceAll(/<link.*>/gm, "");
+		const sanitizedCode = this.code.replaceAll(/<link.*>/gm, "");
+		return sanitizedCode.replace('</head>', (this.base ? `<base href="${this.base}">` : '') + '</head>')
 	}
 
 	override update(changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>) {

@@ -136,6 +136,9 @@ export class TiPreview extends LitElement {
 	dedent = false;
 
 	@property()
+	base: string | null = null;
+
+	@property()
 	"theme" = "dark";
 
 	override connectedCallback() {
@@ -248,8 +251,8 @@ export class TiPreview extends LitElement {
 				${this["hide-output"]
 					? ""
 					: html`
-							<ti-output code="${this.outputCode}"></ti-output>
-					  `}
+							<ti-output base="${this.base}" code="${this.outputCode}"></ti-output>
+						`}
 			</div>
 		`;
 	}
