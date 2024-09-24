@@ -87,7 +87,7 @@ export class TiOutput extends LitElement {
 	}
 
 	private get sanitized() {
-		const sanitizedCode = this.code.replaceAll(/<link.*>/gm, "");
+		const sanitizedCode = this.code.replaceAll(/<link(?!.*href="\/).*?>/gm, "");
 		return sanitizedCode.replace('</head>', (this.base ? `<base href="${this.base}">` : '') + '</head>')
 	}
 
