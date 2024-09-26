@@ -1,6 +1,6 @@
 import { css as cssLang } from "@codemirror/lang-css";
 import { html as htmlLang } from "@codemirror/lang-html";
-import { syntaxHighlighting } from "@codemirror/language";
+import { syntaxHighlighting, indentUnit } from "@codemirror/language";
 import { Compartment, EditorState, Extension } from "@codemirror/state";
 import { EditorView, highlightWhitespace } from "@codemirror/view";
 import { classHighlighter } from "@lezer/highlight";
@@ -185,6 +185,7 @@ export class TiEditor extends LitElement {
 			this.readOnlyCompartment.of(EditorState.readOnly.of(this.readonly)),
 			syntaxHighlighting(classHighlighter),
 			highlightWhitespace(),
+			indentUnit.of("\t"),
 		];
 
 		const lang = this.getLang();
