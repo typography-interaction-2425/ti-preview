@@ -89,7 +89,9 @@ export class TiPreview extends LitElement {
 			scrollbar-width: none;
 			width: 100%;
 
-			&::-webkit-scrollbar { display: none }
+			&::-webkit-scrollbar {
+				display: none;
+			}
 
 			&.has-output {
 				width: 60%;
@@ -207,17 +209,23 @@ export class TiPreview extends LitElement {
 
 	private get outputCode() {
 		return `
-			${Array.from(this.files.entries())
-						.filter(([filename]) => filename.endsWith(".html"))
-						.map(([, code]) => code)
-						.join("")}
-
-			<style>
-				${Array.from(this.files.entries())
-								.filter(([filename]) => filename.endsWith(".css"))
-								.map(([, code]) => unsafeCSS(code))
-								.join("")}
-			</style>
+         <!doctype html>
+         <html>
+            <head>
+               <style>
+                  ${Array.from(this.files.entries())
+										.filter(([filename]) => filename.endsWith(".css"))
+										.map(([, code]) => unsafeCSS(code))
+										.join("")}
+               </style>
+            </head>
+            <body>
+               ${Array.from(this.files.entries())
+									.filter(([filename]) => filename.endsWith(".html"))
+									.map(([, code]) => code)
+									.join("")}
+            </body>
+         </html>
 		`;
 	}
 
@@ -252,7 +260,7 @@ export class TiPreview extends LitElement {
 					? ""
 					: html`
 							<ti-output base="${this.base}" code="${this.outputCode}"></ti-output>
-						`}
+					  `}
 			</div>
 		`;
 	}
