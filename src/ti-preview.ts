@@ -62,7 +62,7 @@ export class TiPreview extends LitElement {
 			--syntax-whitespace: transparent;
 		}
 
-		.query-container {
+		.query-container:has(ti-output) {
 			container-type: size;
 			container-name: query-container;
 			width: 100%;
