@@ -93,10 +93,26 @@ export class TiPreview extends LitElement {
 				display: none;
 			}
 
+			.resize-handle {
+				display: none;
+			}
+
 			&.has-output {
 				width: 60%;
 				min-height: 200px;
-				resize: horizontal;
+				position: relative;
+
+				.resize-handle {
+					cursor: ew-resize;
+					position: absolute;
+					bottom: 0;
+					right: 0;
+					width: 4px;
+					height: 100%;
+					background-color: red;
+					z-index: 2;
+					display: block;
+				}
 			}
 
 			&.light {
@@ -142,6 +158,10 @@ export class TiPreview extends LitElement {
 
 	@property()
 	"theme" = "dark";
+
+	@state()
+	width: number | null = null;
+	dragging = false;
 
 	override connectedCallback() {
 		super.connectedCallback();
@@ -229,6 +249,30 @@ export class TiPreview extends LitElement {
 		`;
 	}
 
+	private onResizePointerDown() {
+		this.dragging = true;
+		this.addEventListener("pointerup", this.onResizePointerUp);
+		this.addEventListener("pointermove", this.onResizePointerMove);
+	}
+
+	private onResizePointerUp() {
+		this.dragging = false;
+		this.removeEventListener("pointerup", this.onResizePointerUp);
+		this.removeEventListener("pointermove", this.onResizePointerMove);
+	}
+
+	private onResizePointerMove(e: any) {
+		if (!this.dragging) return;
+
+		if (this.width !== null) {
+			this.width = this.width + e.movementX;
+		} else {
+			this.width = e.clientX;
+		}
+	}
+
+	private resetWidth() {}
+
 	override render() {
 		if (this.theme !== "light" && this.theme !== "dark") {
 			throw new Error(`Theme has to be one of light, dark. Given: ${this.theme}`);
@@ -236,7 +280,10 @@ export class TiPreview extends LitElement {
 
 		return html`
 			<div class="container">
-				<div class="code ${this.theme} ${this["hide-output"] ? "" : "has-output"}">
+				<div
+					class="code ${this.theme} ${this["hide-output"] ? "" : "has-output"}"
+					style="${this.width ? `width: ${this.width}px` : ""}"
+				>
 					${this["hide-tabs"]
 						? ""
 						: html`
@@ -254,6 +301,8 @@ export class TiPreview extends LitElement {
 						?readonly="${this.readonly}"
 						@code-change="${this.onCodeChange}"
 					></ti-editor>
+
+					<div class="resize-handle" @pointerdown="${this.onResizePointerDown}" @dblclick="${this.resetWidth}"></div>
 				</div>
 
 				${this["hide-output"]
