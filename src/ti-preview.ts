@@ -62,6 +62,13 @@ export class TiPreview extends LitElement {
 			--syntax-whitespace: transparent;
 		}
 
+		.query-container {
+			container-type: size;
+			container-name: query-container;
+			width: 100%;
+			height: 100%;
+		}
+
 		.container {
 			all: initial;
 			display: flex;
@@ -118,15 +125,18 @@ export class TiPreview extends LitElement {
 			min-width: 180px;
 		}
 
-      .container.vertical {
-         flex-direction: column;
+		@container query-container (aspect-ratio < 4/3) {
+			.container {
+				flex-direction: column;
 
-         & .code.has-output {
-            width: 100%;
-            resize: vertical;
-            min-height: 0;
-         }
-      }
+				& .code.has-output {
+					height: 50%;
+					min-height: 0;
+					resize: vertical;
+					width: initial;
+				}
+			}
+		}
 	`;
 
 	@property()
@@ -144,8 +154,8 @@ export class TiPreview extends LitElement {
 	@property({ type: Boolean })
 	"hide-tabs" = false;
 
-   @property({ type: Boolean })
-   vertical = false;
+	@property({ type: Boolean })
+	vertical = false;
 
 	@property({ type: Boolean })
 	dedent = false;
@@ -222,23 +232,23 @@ export class TiPreview extends LitElement {
 
 	private get outputCode() {
 		return `
-         <!doctype html>
-         <html>
-            <head>
-               <style>
-                  ${Array.from(this.files.entries())
+			<!doctype html>
+			<html>
+				<head>
+					<style>
+						${Array.from(this.files.entries())
 										.filter(([filename]) => filename.endsWith(".css"))
 										.map(([, code]) => unsafeCSS(code))
 										.join("")}
-               </style>
-            </head>
-            <body>
-               ${Array.from(this.files.entries())
+					</style>
+				</head>
+				<body>
+					${Array.from(this.files.entries())
 									.filter(([filename]) => filename.endsWith(".html"))
 									.map(([, code]) => code)
 									.join("")}
-            </body>
-         </html>
+				</body>
+			</html>
 		`;
 	}
 
@@ -248,32 +258,34 @@ export class TiPreview extends LitElement {
 		}
 
 		return html`
-			<div class="container ${this.vertical ? "vertical": ""}">
-				<div class="code ${this.theme} ${this["hide-output"] ? "" : "has-output"}">
-					${this["hide-tabs"]
+			<div class="query-container">
+				<div class="container ${this.vertical ? "vertical": ""}">
+					<div class="code ${this.theme} ${this["hide-output"] ? "" : "has-output"}">
+						${this["hide-tabs"]
+							? ""
+							: html`
+									<ti-tabs
+										current="${this.current}"
+										files="${this.fileNames.join(",")}"
+										@set-current="${this.setCurrent}"
+									></ti-tabs>
+							`}
+
+						<ti-editor
+							file="${this.current}"
+							code="${this.current ? this.files.get(this.current) : ""}"
+							theme="${this.theme}"
+							?readonly="${this.readonly}"
+							@code-change="${this.onCodeChange}"
+						></ti-editor>
+					</div>
+
+					${this["hide-output"]
 						? ""
 						: html`
-								<ti-tabs
-									current="${this.current}"
-									files="${this.fileNames.join(",")}"
-									@set-current="${this.setCurrent}"
-								></ti-tabs>
-						  `}
-
-					<ti-editor
-						file="${this.current}"
-						code="${this.current ? this.files.get(this.current) : ""}"
-						theme="${this.theme}"
-						?readonly="${this.readonly}"
-						@code-change="${this.onCodeChange}"
-					></ti-editor>
+								<ti-output base="${this.base}" code="${this.outputCode}"></ti-output>
+						`}
 				</div>
-
-				${this["hide-output"]
-					? ""
-					: html`
-							<ti-output base="${this.base}" code="${this.outputCode}"></ti-output>
-					  `}
 			</div>
 		`;
 	}
