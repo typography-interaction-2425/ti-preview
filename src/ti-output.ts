@@ -27,7 +27,7 @@ export class TiOutput extends LitElement {
 			margin: 0;
 			inset-inline-start: 4px;
 			inset-block-end: 4px;
-			font-family: monospace;
+			font-family: var(--editor-font-family);
 			font-variant-numeric: tabular-nums;
 			font-size: 12px;
 			background-color: #ffffffaa;
