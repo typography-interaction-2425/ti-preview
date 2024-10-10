@@ -25,6 +25,9 @@ export class TiPreview extends LitElement {
 			--output-background: #22252a;
 			--output-border: 2px solid var(--editor-background);
 
+			--editor-width: 60%;
+			--editor-height: 50%;
+
 			--editor-background: #292c33;
 			--editor-caret-color: #acb2be;
 			--editor-font-family: monospace;
@@ -101,8 +104,7 @@ export class TiPreview extends LitElement {
 			}
 
 			&.has-output {
-				width: 60%;
-				min-height: 200px;
+				width: var(--editor-width);
 				resize: horizontal;
 			}
 
@@ -130,7 +132,7 @@ export class TiPreview extends LitElement {
 				flex-direction: column;
 
 				& .code.has-output {
-					height: 50%;
+					height: var(--editor-height);
 					min-height: 0;
 					resize: vertical;
 					width: initial;

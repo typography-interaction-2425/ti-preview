@@ -63,6 +63,9 @@ The following CSS variables can be overridden on `ti-preview`:
 --output-background: #22252a;
 --output-border: 2px solid var(--editor-background);
 
+--editor-width: 60%;
+--editor-height: 50%;
+
 --editor-background: #292c33;
 --editor-caret-color: #acb2be;
 --editor-font-family: monospace;
