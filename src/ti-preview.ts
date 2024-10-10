@@ -231,25 +231,23 @@ export class TiPreview extends LitElement {
 	}
 
 	private get outputCode() {
-		return `
-			<!doctype html>
-			<html>
-				<head>
-					<style>
-						${Array.from(this.files.entries())
-										.filter(([filename]) => filename.endsWith(".css"))
-										.map(([, code]) => unsafeCSS(code))
-										.join("")}
-					</style>
-				</head>
-				<body>
-					${Array.from(this.files.entries())
-									.filter(([filename]) => filename.endsWith(".html"))
-									.map(([, code]) => code)
-									.join("")}
-				</body>
-			</html>
+		const css = `
+			<style>
+				${Array.from(this.files.entries())
+								.filter(([filename]) => filename.endsWith(".css"))
+								.map(([, code]) => unsafeCSS(code))
+								.join("")}
+			</style>
 		`;
+
+		const html = `
+			${Array.from(this.files.entries())
+						.filter(([filename]) => filename.endsWith(".html"))
+						.map(([, code]) => code)
+						.join("")}
+		`;
+
+		return html.replace('</head>', css + '</head>');
 	}
 
 	override render() {
