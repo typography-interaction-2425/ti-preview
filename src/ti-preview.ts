@@ -166,9 +166,25 @@ export class TiPreview extends LitElement {
 	@property()
 	"theme" = "dark";
 
+	private resetResize() {
+		this.addEventListener('click', (event) => {
+			const codeContainer = this.shadowRoot?.querySelector('div.code') as HTMLDivElement;
+			const previewBounds = codeContainer.getBoundingClientRect();
+			if (
+				event.clientX >= previewBounds.width - 16 &&
+				event.clientY >= previewBounds.height - 16 &&
+				event.detail == 2 // Second-click
+			) {
+				codeContainer.style.removeProperty('width');
+				codeContainer.style.removeProperty('height');
+			}
+		});
+	}
+
 	override connectedCallback() {
 		super.connectedCallback();
 		this.updateFiles();
+		this.resetResize();
 	}
 
 	private get fileNames() {
