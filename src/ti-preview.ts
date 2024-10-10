@@ -117,6 +117,16 @@ export class TiPreview extends LitElement {
 			flex-basis: 0;
 			min-width: 180px;
 		}
+
+      .container.vertical {
+         flex-direction: column;
+
+         & .code.has-output {
+            width: 100%;
+            resize: vertical;
+            min-height: 0;
+         }
+      }
 	`;
 
 	@property()
@@ -133,6 +143,9 @@ export class TiPreview extends LitElement {
 
 	@property({ type: Boolean })
 	"hide-tabs" = false;
+
+   @property({ type: Boolean })
+   vertical = false;
 
 	@property({ type: Boolean })
 	dedent = false;
@@ -235,7 +248,7 @@ export class TiPreview extends LitElement {
 		}
 
 		return html`
-			<div class="container">
+			<div class="container ${this.vertical ? "vertical": ""}">
 				<div class="code ${this.theme} ${this["hide-output"] ? "" : "has-output"}">
 					${this["hide-tabs"]
 						? ""
