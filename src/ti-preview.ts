@@ -104,8 +104,9 @@ export class TiPreview extends LitElement {
 			}
 
 			&.has-output {
-				width: var(--editor-width);
+				overflow: auto; /* Safari needs this. */
 				resize: horizontal;
+				width: var(--editor-width);
 			}
 
 			&.light {
