@@ -10,6 +10,11 @@
 				margin-bottom: 20px;
 				border-bottom: 1px solid black;
 			}
+
+         ti-preview {
+            height: 460px;
+            display: block;
+         }
 		</style>
 	</head>
 
@@ -22,13 +27,11 @@
 				<a href="./readonly.html">Readonly</a>
 				<a href="./interactive.html">Interactive</a>
 				<a href="./theming.html">Theming</a>
-            <a href="./vertical.html">Vertical</a>
+				<a href="./vertical.html">Vertical</a>
 			</nav>
 		</header>
 
-		<!-- Set the `current` attribute to start on a different tab. Defaults to the first -->
-		<ti-preview current="setup.css" dedent>
-			
+      <ti-preview current="setup.css" dedent vertical>
 			<!-- Figures with Figcaption are the semantically recommended way to set the language and filename -->
 			<figure>
 				<figcaption>index.html</figcaption>
@@ -67,19 +70,10 @@
 				</pre>
 			</figure>
 
-			<!-- If figures aren't an option, a plain pre will work as well. 
-				  You can set the filename through the data-filename attribute -->
-			<pre data-filename="font.css">
-				section { font-family: 'Comic Sans MS'; }
-			</pre>
-
-			<!-- Alternatively, use a language-* class to set the syntax highlighting. 
-				  The filename will default to example-{index}.{lang}.
-				  The filename data attribute takes precedence over the language class. -->
 			<pre class="language-css">
 				section { background-color: aquamarine; }
 
-				@media (max-width: 480px), (min-width: 600px) {
+				@media (max-height: 200px), (min-height: 400px) {
 					section { background-color: gold; }
 				}
 			</pre>
