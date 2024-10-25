@@ -15,6 +15,7 @@ export default defineConfig({
 				"codemirror",
 				"@codemirror/lang-css",
 				"@codemirror/lang-html",
+				"@codemirror/lang-javascript",
 				"@codemirror/language",
 				"@codemirror/state",
 				"@codemirror/theme-one-dark",

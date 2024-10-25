@@ -1,5 +1,6 @@
 import { css as cssLang } from "@codemirror/lang-css";
 import { html as htmlLang } from "@codemirror/lang-html";
+import { javascript as jsLang } from '@codemirror/lang-javascript';
 import { syntaxHighlighting, indentUnit } from "@codemirror/language";
 import { Compartment, EditorState, Extension } from "@codemirror/state";
 import { EditorView, highlightWhitespace } from "@codemirror/view";
@@ -196,6 +197,10 @@ export class TiEditor extends LitElement {
 
 		if (lang === "css") {
 			extensions.push(cssLang());
+		}
+
+		if (lang === "js") {
+			extensions.push(jsLang());
 		}
 
 		return EditorState.create({
