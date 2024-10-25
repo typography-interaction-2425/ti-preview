@@ -94,6 +94,10 @@ export class TiEditor extends LitElement {
 							color: var(--syntax-variableName);
 						}
 
+						.tok-definition {
+							color: var(--syntax-definition);
+						}
+
 						.tok-typeName {
 							color: var(--syntax-typeName);
 						}

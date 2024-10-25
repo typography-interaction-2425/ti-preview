@@ -52,6 +52,7 @@ export class TiPreview extends LitElement {
 			--syntax-string: #98c379;
 			--syntax-number: #e5c07b;
 			--syntax-variableName: #61afef;
+			--syntax-definition: #61afef;
 			--syntax-typeName: #e5c07b;
 			--syntax-namespace: #e5c07b;
 			--syntax-className: #e5c07b;
