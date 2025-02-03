@@ -267,7 +267,16 @@ export class TiPreview extends LitElement {
 						.join("")}
 		`;
 
-		return html.replace('</head>', css + '</head>');
+		const js = `
+			<script>
+				${Array.from(this.files.entries())
+					.filter(([filename]) => filename.endsWith(".js"))
+					.map(([, code]) => code)
+					.join("")}
+			</script>
+		`
+
+		return html.replace('</head>', css + '</head>').replace('</body>', js + '</body>');
 	}
 
 	override render() {
