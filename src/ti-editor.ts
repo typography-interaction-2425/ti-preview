@@ -138,8 +138,9 @@ export class TiEditor extends LitElement {
 							color: var(--syntax-invalid);
 						}
 
-						.cm-highlightSpace::before {
+						.cm-highlightSpace {
 							color: var(--syntax-whitespace);
+							background-image: radial-gradient(circle at 50% 55%, currentColor 20%, transparent 5%)
 						}
 
 						.cm-highlightTab {
