@@ -268,7 +268,7 @@ export class TiPreview extends LitElement {
 		`;
 
 		const js = `
-			<script>
+			<script defer>
 				${Array.from(this.files.entries())
 					.filter(([filename]) => filename.endsWith(".js"))
 					.map(([, code]) => code)
