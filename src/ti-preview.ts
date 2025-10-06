@@ -254,17 +254,17 @@ export class TiPreview extends LitElement {
 		const css = `
 			<style>
 				${Array.from(this.files.entries())
-								.filter(([filename]) => filename.endsWith(".css"))
-								.map(([, code]) => unsafeCSS(code))
-								.join("")}
+					.filter(([filename]) => filename.endsWith(".css"))
+					.map(([, code]) => unsafeCSS(code))
+					.join("")}
 			</style>
 		`;
 
 		const html = `
 			${Array.from(this.files.entries())
-						.filter(([filename]) => filename.endsWith(".html"))
-						.map(([, code]) => code)
-						.join("")}
+				.filter(([filename]) => filename.endsWith(".html"))
+				.map(([, code]) => code)
+				.join("")}
 		`;
 
 		const js = `
@@ -276,7 +276,7 @@ export class TiPreview extends LitElement {
 			</script>
 		`
 
-		return html.replace('</head>', css + '</head>').replace('</body>', js + '</body>');
+		return html.replace('</head>', css + js + '</head>')
 	}
 
 	override render() {
