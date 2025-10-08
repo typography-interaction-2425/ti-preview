@@ -138,22 +138,20 @@ export class TiEditor extends LitElement {
 							color: var(--syntax-invalid);
 						}
 
-						.cm-highlightSpace {
-							color: var(--syntax-whitespace);
-							background-image: radial-gradient(circle at 50% 55%, currentColor 20%, transparent 5%)
-						}
-
+						.cm-highlightSpace,
 						.cm-highlightTab {
 							background-image: none;
 							position: relative;
 
 							&::before {
 								color: var(--syntax-whitespace);
-								content: '⇥';
 								pointer-events: none;
 								position: absolute;
 							}
 						}
+
+						.cm-highlightSpace::before { content: var(--syntax-whitespace-space, '•'); }
+						.cm-highlightTab::before { content: var(--syntax-whitespace-tab, '⇥'); }
 					}
 				}
 
